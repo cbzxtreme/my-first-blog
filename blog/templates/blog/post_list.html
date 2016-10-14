@@ -1,24 +1,13 @@
-<html>
-    <head>
-        <title> Gaurav Kantrod's blog</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="">Gaurav Kantrod's Blog</a></h1>
-        </div>
-
-        <div>
-            <p>published: 15.10.2016, 12:14</p>
-            <h2><a href="">My first post</a></h2>
-            <p>Hi to all. May greetings be with you.
-I am Gaurav Kantrod, just completed my B.E in Electronics and Telecommunication Engineering from Smt.Kashibai Navale College of Engineering College, Pune. Presently I have been working with Vodafone Shared Services. I like to work on open-source platforms in collaboraton with Internet Of Things(IOT).
-</p>
-        </div>
-
-        <div>
-            <p>published: 15.10.2106, 12:14</p>
-            <h2><a href="">My second post</a></h2>
-            <p>From last 4 months I have been working on python and Raspberry Pi</p>
-        </div>
-    </body>
-</html>
+{% extends 'blog/base.html' %}	
+		{% block content %}
+            {% for post in posts %}
+                <div class="post">
+                    <div class="date">
+                       {{ post.published_date }}
+                    </div>
+                    <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+                    <p>{{ post.text|linebreaksbr }}</p>
+                </div>
+            {% endfor %}
+	{% endblock %}
+ 
